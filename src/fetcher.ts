@@ -7,8 +7,8 @@
 
 import { existsSync, readdirSync } from 'fs';
 import { resolve } from 'path';
-import { getOpenApisContent } from './openapi';
 import { OpenAPIContent } from '../model';
+import { getOpenApisContent } from './openapi';
 
 export async function fetcher(path: string): Promise<OpenAPIContent[]> {
     // Converts path to absolute
@@ -32,20 +32,28 @@ export async function fetcher(path: string): Promise<OpenAPIContent[]> {
  *          and the content for every specification found inside of the given path
  */
 async function loadsSwaggerFiles(projectPath: string): Promise<OpenAPIContent[]> {
-    const projectContent = readdirSync(projectPath);
+    const projectContent = await getFiles(projectPath);
     if (projectContent === undefined || projectContent.length === 0) {
         return []
     }
-    const paths = projectContent
-        // Find all yml and yaml files
-        .filter((p) => p.match(/.*\.(yml|yaml)/gi))
-        .map(p => `${projectPath}/${p}`)
 
-    return await getOpenApisContent(paths);
+    return await getOpenApisContent(projectContent);
+}
 
+async function getFiles(fromPath = "./", paths: string[] = []): Promise<string[]> {
+    const entries = await readdirSync(fromPath, { withFileTypes: true });
+    for (const entry of entries) {
+        if (entry.isDirectory()) {
+            paths.push(...await getFiles(`${fromPath}/${entry.name}/`));
+        } else if (entry.name.match(/.*\.(yml|yaml|json)/gi)) {
+            paths.push(resolve(`${fromPath}/${entry.name}`))
+        }
+    }
+    return paths;
 }
 
 // Just for testing reasons https://stackoverflow.com/a/54116079
 export const testables = {
     loadsSwaggerFiles,
+    getFiles
 };

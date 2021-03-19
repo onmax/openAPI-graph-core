@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: User's API
+  description: A sample User's API to test openAPI-graph
+paths:
+  /users:
+    get:
+      description: Returns a lists of users
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                format: array
+                items:
+                  $ref: "../social-network.yaml#/components/schemas/User"
+  /user:
+    get:
+      description: Get a user given a username
+      parameters:
+        - name: username
+          in: query
+          schema:
+            $ref: "../social-network.yaml#/components/schemas/Username"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "../social-network.yaml#/components/schemas/User"
+    post:
+      description: Creates a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../social-network.yaml#/components/schemas/User"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "../social-network.yaml#/components/schemas/User"

@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Post's API
+  description: A sample Post's API to test openAPI-graph
+paths:
+  /post:
+    get:
+      description: Returns a list of posts
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                format: array
+                items:
+                  $ref: "../social-network.yaml#/components/schemas/Post"

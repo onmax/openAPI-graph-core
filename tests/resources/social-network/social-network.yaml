@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Sample API
+  description: A sample API to illustrate OpenAPI concepts
+paths:
+  /status:
+    get:
+      description: Get status of the server
+      responses:
+        "200":
+          description: Successful response
+components:
+  schemas:
+    Username:
+      type: string
+    Name:
+      type: string
+    Email:
+      type: string
+      format: email
+    User:
+      type: object
+      required: [username, name, email]
+      properties:
+        username:
+          $ref: "#/components/schemas/Username"
+        name:
+          $ref: "#/components/schemas/Name"
+        email:
+          $ref: "#/components/schemas/Email"
+    Post:
+      type: object
+      required: [author, date, content]
+      properties:
+        author:
+          $ref: "#/components/schemas/User"
+        date:
+          type: string
+        content:
+          type: string
