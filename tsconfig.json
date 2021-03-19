@@ -11,10 +11,11 @@
         "esModuleInterop": true
     },
     "include": [
-        "src"
+        "src",
+        "test"
     ],
     "exclude": [
         "node_modules",
-        "**/__tests__/*"
+        "**/test/*"
     ]
 }

@@ -17,7 +17,7 @@
                 "<node_internals>/**"
             ],
             "console": "integratedTerminal",
-            "program": "${workspaceFolder}/src/__tests__/fetcher.test.ts",
+            "program": "${workspaceFolder}/test/fetcher.test.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": [
                 "${workspaceFolder}/lib/**/*.js"

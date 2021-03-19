@@ -1,11 +1,11 @@
-import { fetcher } from '../../fetcher';
-import { RefNode } from '../../graph/nodes/ref/RefNode';
-import { OpenAPIGraphsBuilder } from '../../graph';
-import { OpenAPIGraph } from '../../graph/OpenAPIGraph';
+import { fetcher } from '../../src/fetcher';
+import { RefNode } from '../../src/graph/nodes/ref/RefNode';
+import { OpenAPIGraphsBuilder } from '../../src/graph';
+import { OpenAPIGraph } from '../../src/graph/OpenAPIGraph';
 
 
 test('Creates a graph from the petstore specification', async () => {
-    const petstoreApis = await fetcher("src/__tests__/resources/petstore");
+    const petstoreApis = await fetcher("tests/resources/petstore");
     const petstoreBuilder = new OpenAPIGraphsBuilder(petstoreApis);
     expect(petstoreBuilder.graphs[0]).toMatchSnapshot({
         name: "Swagger Petstore",

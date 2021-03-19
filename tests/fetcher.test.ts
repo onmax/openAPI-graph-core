@@ -1,9 +1,9 @@
 import { resolve } from 'path';
 
-import { fetcher, testables } from '../fetcher';
+import { fetcher, testables } from '../src/fetcher';
 const { loadsSwaggerFiles } = testables;
 
-const resourcesDir = `${resolve('.')}/src/__tests__/resources`;
+const resourcesDir = `${resolve('.')}/tests/resources`;
 const noneProject = `${resourcesDir}/none`;
 const petStoreProject = `${resourcesDir}/petstore`;
 
