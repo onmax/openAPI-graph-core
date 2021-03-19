@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the petstore folder 1`] = `
+Object {
+  "content": Any<Object>,
+  "path": Any<String>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the petstore folder 2`] = `
+Object {
+  "components": Object {
+    "schemas": Object {
+      "Error": Object {
+        "properties": Object {
+          "code": Object {
+            "format": "int32",
+            "type": "integer",
+          },
+          "message": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "code",
+          "message",
+        ],
+        "type": "object",
+      },
+      "Pet": Object {
+        "properties": Object {
+          "id": Object {
+            "format": "int64",
+            "type": "integer",
+          },
+          "name": Object {
+            "type": "string",
+          },
+          "tag": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "id",
+          "name",
+        ],
+        "type": "object",
+      },
+      "Pets": Object {
+        "items": Object {
+          "$ref": "#/components/schemas/Pet",
+        },
+        "type": "array",
+      },
+      "SchemaNotBeingUsed": Object {
+        "properties": Object {
+          "key": Object {
+            "type": "string",
+          },
+          "value": Object {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+    },
+  },
+  "info": Any<Object>,
+  "openapi": Any<String>,
+  "paths": Any<Object>,
+  "servers": Array [
+    Object {
+      "url": "http://petstore.swagger.io/v1",
+    },
+  ],
+}
+`;
