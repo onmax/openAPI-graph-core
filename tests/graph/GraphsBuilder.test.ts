@@ -17,7 +17,7 @@ test('Creates a graph from the petstore specification', async () => {
     expect(schemasNames).toEqual(expected)
 
     const refSchemas: RefNode[] = graph.content.getRefNode();
-    const expectedSchemas = ['Pets', 'Error', 'Error', 'Pet', 'Pet', 'Error'].sort()
+    const expectedSchemas = ['Pets', 'Error', 'Pet'].sort()
     expect(refSchemas.map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
     expect(refSchemas.map(n => n.name).sort()).toStrictEqual(expectedSchemas)
 });

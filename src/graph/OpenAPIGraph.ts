@@ -2,17 +2,22 @@ import { RefNode } from './nodes/ref/RefNode';
 import { SchemaNode } from './nodes/SchemaNode';
 
 export class OpenAPIGraph {
-    private schemaNodes!: SchemaNode[];
-    private refNodes!: RefNode[];
+    private schemaNodes!: Set<SchemaNode>;
+    private refNodes!: Set<RefNode>;
 
     constructor() {
-        this.schemaNodes = [];
-        this.refNodes = [];
+        this.schemaNodes = new Set();
+        this.refNodes = new Set();
+    }
+
+    findSchemaNodeByName(schemaName: string): SchemaNode | undefined {
+        return this.getSchemaNodes().find(s => s.name === schemaName);
     }
 
     addSchemaNode(schemaNode: SchemaNode): void {
-        // TODO Check that node is already in the graph and test it
-        this.schemaNodes.push(schemaNode);
+        if (!this.findSchemaNodeByName(schemaNode.name)) {
+            this.schemaNodes.add(schemaNode);
+        }
     }
 
     addSchemaNodes(schemaNodes: SchemaNode[]): void {
@@ -20,12 +25,17 @@ export class OpenAPIGraph {
     }
 
     getSchemaNodes(): SchemaNode[] {
-        return this.schemaNodes;
+        return Array.from(this.schemaNodes);
+    }
+
+    findRefNodeByName(schemaName: string): RefNode | undefined {
+        return this.getRefNode().find(s => s.name === schemaName);
     }
 
     addRefNode(refNode: RefNode): void {
-        // TODO Check that node is already in the graph and test it
-        this.refNodes.push(refNode);
+        if (!this.findRefNodeByName(refNode.name)) {
+            this.refNodes.add(refNode);
+        }
     }
 
     addRefNodes(refNodes: RefNode[]): void {
@@ -33,7 +43,7 @@ export class OpenAPIGraph {
     }
 
     getRefNode(): RefNode[] {
-        return this.refNodes;
+        return Array.from(this.refNodes);
     }
 }
 
