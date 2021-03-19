@@ -1,4 +1,4 @@
-import { OpenAPIContent } from "../model";
+import { OpenAPIContent } from "../../model";
 /**
  * reads the contents of all given paths. The files will be validated.
  *

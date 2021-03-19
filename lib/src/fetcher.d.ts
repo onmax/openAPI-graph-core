@@ -4,7 +4,7 @@
  * as a result
  *
  */
-import { OpenAPIContent } from './model';
+import { OpenAPIContent } from '../model';
 export declare function fetcher(path: string): Promise<OpenAPIContent[]>;
 /**
  * Finds all the valid OpenApi specifications given a directory and returns a
