@@ -1,22 +1,20 @@
-import { fetcher } from '../../src/fetcher';
-import { RefNode } from '../../src/graph/nodes/ref/RefNode';
-import { OpenAPIGraphsBuilder } from '../../src/graph';
-import { OpenAPIGraph } from '../../src/graph/OpenAPIGraph';
+import { fetcher } from '../../../src/fetcher';
+import { OpenAPIGraphsBuilder } from '../../../src/graph';
+import { RefEdge } from '../../../src/graph/edges/ref';
 
 
 test('Creates a graph from the petstore specification', async () => {
     const petstoreApis = await fetcher("tests/resources/petstore");
     const petstoreBuilder = new OpenAPIGraphsBuilder(petstoreApis);
     expect(petstoreBuilder.graphs[0]).toMatchSnapshot({
-        name: "Swagger Petstore",
-        content: expect.any(OpenAPIGraph)
+        path: expect.stringContaining('tests/resources/petstore'),
     });
     const graph = petstoreBuilder.graphs[0]
-    const schemasNames: string[] = graph.content.getSchemaNodes().map(n => n.name).sort();
+    const schemasNames: string[] = Object.values(graph.getSchemaNodes()).map(n => n.name).sort();
     const expected = ["Pet", "Pets", "Error", "SchemaNotBeingUsed"].sort()
     expect(schemasNames).toEqual(expected)
 
-    const refSchemas: RefNode[] = graph.content.getRefNode();
+    const refSchemas: RefEdge[] = Object.values(graph.getSchemaRefEdges());
     const expectedSchemas = ['Pets', 'Error', 'Pet'].sort()
     expect(refSchemas.map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
     expect(refSchemas.map(n => n.name).sort()).toStrictEqual(expectedSchemas)

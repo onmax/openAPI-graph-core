@@ -1,7 +1,7 @@
 import { OpenAPIV3 } from 'openapi-types';
-import { RefNode } from "../../graph/nodes/ref/RefNode";
-import { SchemaRefNode } from "../../graph/nodes/ref/SchemaRefNode";
+import { EdgesRefDict, Nodes } from '../../../model';
 import { SchemaNode } from "../../graph/nodes/SchemaNode";
+import { RefEdge, SchemaRefEdge } from '../edges/ref';
 
 /**
  * It will find all the schemas defined in the specification
@@ -9,13 +9,13 @@ import { SchemaNode } from "../../graph/nodes/SchemaNode";
  * @param api source 
  * @param fn callback which will be executed for every node
  */
-export function getSchemaNodes(apiContent: OpenAPIV3.Document): SchemaNode[] {
-    const nodes: SchemaNode[] = [];
+export function getSchemaNodes(apiContent: OpenAPIV3.Document): Nodes["schemas"] {
+    const nodes: Nodes["schemas"] = {};
     const schemas = apiContent?.components?.schemas
     if (schemas) {
         Object.keys(schemas).forEach(schema => {
             if ('$ref' !== schema) {
-                nodes.push(new SchemaNode(schema, schemas[schema] as OpenAPIV3.SchemaObject))
+                nodes[schema] = new SchemaNode(schema, schemas[schema] as OpenAPIV3.SchemaObject)
             }
         });
     }
@@ -28,17 +28,19 @@ export function getSchemaNodes(apiContent: OpenAPIV3.Document): SchemaNode[] {
  * @param api source
  * @param fn callback which will be executed for every node
  */
-export function getRefNodes(json: any, nodes: RefNode[] = []): RefNode[] {
+const defaultEdgesRefDict: EdgesRefDict = { schemaRef: {} }
+export function getRefEdges(json: any, edges: EdgesRefDict = defaultEdgesRefDict): EdgesRefDict {
     if (json['$ref']) {
         const ref: string = json['$ref'];
         // TODO Should test any type of component
+        // TODO It should check that is after /#/
         if (/components\/schemas/.test(ref)) {
-            nodes.push(new SchemaRefNode(ref))
+            edges.schemaRef[ref] = new SchemaRefEdge(ref)
         }
     } else {
         function handleJson(json: { [x: string]: any; }) {
             Object.keys(json).forEach(key => {
-                nodes = getRefNodes(json[key], nodes)
+                edges = getRefEdges(json[key], edges)
             })
         }
         if (({}).constructor === json.constructor) {
@@ -47,5 +49,5 @@ export function getRefNodes(json: any, nodes: RefNode[] = []): RefNode[] {
             json.forEach(handleJson);
         }
     }
-    return nodes;
+    return edges;
 }

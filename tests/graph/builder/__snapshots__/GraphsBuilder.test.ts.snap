@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creates a graph from the petstore specification 1`] = `
+Object {
+  "edges": Object {
+    "ref": Object {
+      "schemaRef": Object {
+        "#/components/schemas/Error": SchemaRefEdge {
+          "name": "Error",
+          "ref": "#/components/schemas/Error",
+        },
+        "#/components/schemas/Pet": SchemaRefEdge {
+          "name": "Pet",
+          "ref": "#/components/schemas/Pet",
+        },
+        "#/components/schemas/Pets": SchemaRefEdge {
+          "name": "Pets",
+          "ref": "#/components/schemas/Pets",
+        },
+      },
+    },
+  },
+  "nodes": Object {
+    "schemas": Object {
+      "Error": SchemaNode {
+        "content": Object {
+          "properties": Object {
+            "code": Object {
+              "format": "int32",
+              "type": "integer",
+            },
+            "message": Object {
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "code",
+            "message",
+          ],
+          "type": "object",
+        },
+        "name": "Error",
+      },
+      "Pet": SchemaNode {
+        "content": Object {
+          "properties": Object {
+            "id": Object {
+              "format": "int64",
+              "type": "integer",
+            },
+            "name": Object {
+              "type": "string",
+            },
+            "tag": Object {
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "id",
+            "name",
+          ],
+          "type": "object",
+        },
+        "name": "Pet",
+      },
+      "Pets": SchemaNode {
+        "content": Object {
+          "items": Object {
+            "$ref": "#/components/schemas/Pet",
+          },
+          "type": "array",
+        },
+        "name": "Pets",
+      },
+      "SchemaNotBeingUsed": SchemaNode {
+        "content": Object {
+          "properties": Object {
+            "key": Object {
+              "type": "string",
+            },
+            "value": Object {
+              "type": "string",
+            },
+          },
+          "type": "object",
+        },
+        "name": "SchemaNotBeingUsed",
+      },
+    },
+  },
+  "path": StringContaining "tests/resources/petstore",
+}
+`;

@@ -1,3 +1,3 @@
 export { OpenAPIGraph } from "./OpenAPIGraph";
-export { OpenAPIGraphsBuilder } from "./OpenAPIGraphsBuilder";
+export { OpenAPIGraphsBuilder } from "./builder/OpenAPIGraphsBuilder";
 export { OpenAPIGraphsManager } from "./OpenAPIGraphsManager";

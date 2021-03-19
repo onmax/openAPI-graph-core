@@ -1,49 +1,38 @@
-import { RefNode } from './nodes/ref/RefNode';
 import { SchemaNode } from './nodes/SchemaNode';
+import { Edges, EdgesRefDict, Nodes } from '../../model';
+import { RefEdge, SchemaRefEdge } from './edges/ref';
 
 export class OpenAPIGraph {
-    private schemaNodes!: Set<SchemaNode>;
-    private refNodes!: Set<RefNode>;
+    path!: string;
+    nodes!: Nodes;
+    edges!: Edges;
 
-    constructor() {
-        this.schemaNodes = new Set();
-        this.refNodes = new Set();
-    }
-
-    findSchemaNodeByName(schemaName: string): SchemaNode | undefined {
-        return this.getSchemaNodes().find(s => s.name === schemaName);
-    }
-
-    addSchemaNode(schemaNode: SchemaNode): void {
-        if (!this.findSchemaNodeByName(schemaNode.name)) {
-            this.schemaNodes.add(schemaNode);
+    constructor(path: string) {
+        this.path = path;
+        this.nodes = {
+            schemas: {}
+        }
+        this.edges = {
+            ref: {
+                schemaRef: {}
+            }
         }
     }
 
-    addSchemaNodes(schemaNodes: SchemaNode[]): void {
-        schemaNodes.forEach(n => this.addSchemaNode(n));
+    setSchemaNodes(schemaNodes: Nodes["schemas"]): void {
+        this.nodes.schemas = schemaNodes;
     }
 
-    getSchemaNodes(): SchemaNode[] {
-        return Array.from(this.schemaNodes);
+    getSchemaNodes(): Nodes["schemas"] {
+        return this.nodes.schemas;
     }
 
-    findRefNodeByName(schemaName: string): RefNode | undefined {
-        return this.getRefNode().find(s => s.name === schemaName);
+    setRefEdges(refEdges: EdgesRefDict): void {
+        this.edges.ref = refEdges;
     }
 
-    addRefNode(refNode: RefNode): void {
-        if (!this.findRefNodeByName(refNode.name)) {
-            this.refNodes.add(refNode);
-        }
-    }
-
-    addRefNodes(refNodes: RefNode[]): void {
-        refNodes.forEach(n => this.addRefNode(n));
-    }
-
-    getRefNode(): RefNode[] {
-        return Array.from(this.refNodes);
+    getSchemaRefEdges(): EdgesRefDict["schemaRef"] {
+        return this.edges.ref.schemaRef;
     }
 }
 
