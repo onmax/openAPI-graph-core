@@ -1,4 +1,4 @@
-import { GraphContainer, OpenAPIContent } from "../model";
+import { GraphContainer, OpenAPIContent } from "../../model";
 import { getRefNodes, getSchemaNodes } from "./builder";
 import { RefNode } from "./nodes/ref/RefNode";
 import { SchemaNode } from "./nodes/SchemaNode";

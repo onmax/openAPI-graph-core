@@ -1,9 +1,9 @@
-import { fetcher } from '../../fetcher';
-import { OpenAPIGraphsManager } from '../../graph';
+import { fetcher } from '../../src/fetcher';
+import { OpenAPIGraphsManager } from '../../src/graph';
 
 
 test('Creates a graph from the petstore specification', async () => {
-    const petstoreApis = await fetcher("src/__tests__/resources/petstore");
+    const petstoreApis = await fetcher("tests/resources/petstore");
     const petstoreGraphs = new OpenAPIGraphsManager(petstoreApis);
     const unusedSchemas = petstoreGraphs.checkForUnusedSchemas();
     expect(unusedSchemas).toHaveLength(1);

@@ -1,4 +1,4 @@
-import { GraphContainer, OpenAPIContent } from "../model";
+import { GraphContainer, OpenAPIContent } from "../../model";
 export declare class OpenAPIGraphsBuilder {
     graphs: GraphContainer[];
     constructor(apis: OpenAPIContent[]);

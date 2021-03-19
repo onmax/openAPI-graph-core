@@ -1,4 +1,4 @@
-import { OpenAPIContent } from "../model";
+import { OpenAPIContent } from "../../model";
 import { OpenAPIGraphsBuilder } from "./OpenAPIGraphsBuilder";
 import { SchemaRefNode } from "./nodes/ref/SchemaRefNode";
 import { SchemaNode } from "./nodes/SchemaNode";

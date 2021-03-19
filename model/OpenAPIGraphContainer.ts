@@ -1,4 +1,4 @@
-import { OpenAPIGraph } from "../graph/OpenAPIGraph";
+import { OpenAPIGraph } from "../src/graph/OpenAPIGraph";
 
 export interface OpenAPIGraphContainer {
     name: string;
