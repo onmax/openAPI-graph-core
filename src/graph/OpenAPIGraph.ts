@@ -1,49 +1,35 @@
-import { RefNode } from './nodes/ref/RefNode';
-import { SchemaNode } from './nodes/SchemaNode';
+import { Edges, EdgesRefDict, Nodes } from '../../model';
 
 export class OpenAPIGraph {
-    private schemaNodes!: Set<SchemaNode>;
-    private refNodes!: Set<RefNode>;
+  path!: string;
+  nodes!: Nodes;
+  edges!: Edges;
 
-    constructor() {
-        this.schemaNodes = new Set();
-        this.refNodes = new Set();
-    }
+  constructor(path: string) {
+    this.path = path;
+    this.nodes = {
+      schemas: {},
+    };
+    this.edges = {
+      ref: {
+        schemaRef: {},
+      },
+    };
+  }
 
-    findSchemaNodeByName(schemaName: string): SchemaNode | undefined {
-        return this.getSchemaNodes().find(s => s.name === schemaName);
-    }
+  setSchemaNodes(schemaNodes: Nodes['schemas']): void {
+    this.nodes.schemas = schemaNodes;
+  }
 
-    addSchemaNode(schemaNode: SchemaNode): void {
-        if (!this.findSchemaNodeByName(schemaNode.name)) {
-            this.schemaNodes.add(schemaNode);
-        }
-    }
+  getSchemaNodes(): Nodes['schemas'] {
+    return this.nodes.schemas;
+  }
 
-    addSchemaNodes(schemaNodes: SchemaNode[]): void {
-        schemaNodes.forEach(n => this.addSchemaNode(n));
-    }
+  setRefEdges(refEdges: EdgesRefDict): void {
+    this.edges.ref = refEdges;
+  }
 
-    getSchemaNodes(): SchemaNode[] {
-        return Array.from(this.schemaNodes);
-    }
-
-    findRefNodeByName(schemaName: string): RefNode | undefined {
-        return this.getRefNode().find(s => s.name === schemaName);
-    }
-
-    addRefNode(refNode: RefNode): void {
-        if (!this.findRefNodeByName(refNode.name)) {
-            this.refNodes.add(refNode);
-        }
-    }
-
-    addRefNodes(refNodes: RefNode[]): void {
-        refNodes.forEach(n => this.addRefNode(n));
-    }
-
-    getRefNode(): RefNode[] {
-        return Array.from(this.refNodes);
-    }
+  getSchemaRefEdges(): EdgesRefDict['schemaRef'] {
+    return this.edges.ref.schemaRef;
+  }
 }
-

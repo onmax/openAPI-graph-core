@@ -75,3 +75,100 @@ Object {
   ],
 }
 `;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 1`] = `
+Object {
+  "content": Any<Object>,
+  "path": Any<String>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 2`] = `
+Object {
+  "info": Any<Object>,
+  "openapi": Any<String>,
+  "paths": Any<Object>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 3`] = `
+Object {
+  "content": Any<Object>,
+  "path": Any<String>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 4`] = `
+Object {
+  "components": Object {
+    "schemas": Object {
+      "Email": Object {
+        "format": "email",
+        "type": "string",
+      },
+      "Name": Object {
+        "type": "string",
+      },
+      "Post": Object {
+        "properties": Object {
+          "author": Object {
+            "$ref": "#/components/schemas/User",
+          },
+          "content": Object {
+            "type": "string",
+          },
+          "date": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "author",
+          "date",
+          "content",
+        ],
+        "type": "object",
+      },
+      "User": Object {
+        "properties": Object {
+          "email": Object {
+            "$ref": "#/components/schemas/Email",
+          },
+          "name": Object {
+            "$ref": "#/components/schemas/Name",
+          },
+          "username": Object {
+            "$ref": "#/components/schemas/Username",
+          },
+        },
+        "required": Array [
+          "username",
+          "name",
+          "email",
+        ],
+        "type": "object",
+      },
+      "Username": Object {
+        "type": "string",
+      },
+    },
+  },
+  "info": Any<Object>,
+  "openapi": Any<String>,
+  "paths": Any<Object>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 5`] = `
+Object {
+  "content": Any<Object>,
+  "path": Any<String>,
+}
+`;
+
+exports[`Should retrieve all the valid openAPI files and load them as JSON in the social-network folder 6`] = `
+Object {
+  "info": Any<Object>,
+  "openapi": Any<String>,
+  "paths": Any<Object>,
+}
+`;

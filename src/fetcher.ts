@@ -7,20 +7,19 @@
 
 import { existsSync, readdirSync } from 'fs';
 import { resolve } from 'path';
-import { getOpenApisContent } from './openapi';
 import { OpenAPIContent } from '../model';
+import { getOpenApisContent } from './openapi';
 
 export async function fetcher(path: string): Promise<OpenAPIContent[]> {
-    // Converts path to absolute
-    path = resolve(path);
-    const pathExists = existsSync(path);
+  // Converts path to absolute
+  path = resolve(path);
+  const pathExists = existsSync(path);
 
-    if (!pathExists) {
-        throw new Error('The given path does not exist in your system');
-    } else {
-        return await loadsSwaggerFiles(path);
-    }
-
+  if (!pathExists) {
+    throw new Error('The given path does not exist in your system');
+  } else {
+    return await loadsSwaggerFiles(path);
+  }
 }
 
 /**
@@ -32,20 +31,28 @@ export async function fetcher(path: string): Promise<OpenAPIContent[]> {
  *          and the content for every specification found inside of the given path
  */
 async function loadsSwaggerFiles(projectPath: string): Promise<OpenAPIContent[]> {
-    const projectContent = readdirSync(projectPath);
-    if (projectContent === undefined || projectContent.length === 0) {
-        return []
+  const projectContent = await getFiles(resolve(projectPath));
+  if (projectContent === undefined || projectContent.length === 0) {
+    return [];
+  }
+
+  return await getOpenApisContent(projectContent);
+}
+
+async function getFiles(fromPath = './', paths: string[] = []): Promise<string[]> {
+  const entries = await readdirSync(fromPath, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      paths.push(...(await getFiles(`${fromPath}/${entry.name}/`)));
+    } else if (entry.name.match(/.*\.(yml|yaml|json)/gi)) {
+      paths.push(resolve(`${fromPath}/${entry.name}`));
     }
-    const paths = projectContent
-        // Find all yml and yaml files
-        .filter((p) => p.match(/.*\.(yml|yaml)/gi))
-        .map(p => `${projectPath}/${p}`)
-
-    return await getOpenApisContent(paths);
-
+  }
+  return paths;
 }
 
 // Just for testing reasons https://stackoverflow.com/a/54116079
 export const testables = {
-    loadsSwaggerFiles,
+  loadsSwaggerFiles,
+  getFiles,
 };

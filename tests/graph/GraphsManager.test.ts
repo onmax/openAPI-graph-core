@@ -12,3 +12,7 @@ test('Creates a graph from the petstore specification', async () => {
         name: 'SchemaNotBeingUsed'
     })
 });
+
+// TODO
+// test('Creates a graph from the social network specification', async () => {
+// });
