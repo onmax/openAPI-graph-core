@@ -1,5 +1,5 @@
 {
-  "name": "openapi-graph",
+  "name": "@openapi-graph/core",
   "version": "0.0.1-alpha.1.0",
   "description": "A TS library to manage large API projects defined by OpenAPIv3 specification.",
   "main": "./lib/index.js",
