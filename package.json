@@ -22,9 +22,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "url": "git://github.com/onmax/open-api-graph.git"
   },
