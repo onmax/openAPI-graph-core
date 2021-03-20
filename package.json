@@ -13,7 +13,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "debug": "node --debug-brk --inspect ./node_modules/jest/bin/jest -i"
   },

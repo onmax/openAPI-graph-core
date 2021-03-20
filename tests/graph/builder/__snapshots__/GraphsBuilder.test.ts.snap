@@ -2,92 +2,250 @@
 
 exports[`Creates a graph from the petstore specification 1`] = `
 Object {
+  "edges": Any<Object>,
+  "nodes": Any<Object>,
+  "path": StringContaining "tests/resources/petstore",
+}
+`;
+
+exports[`Creates a graph from the social-network specification 1`] = `
+Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "#/components/schemas/Error": SchemaRefEdge {
-          "name": "Error",
-          "ref": "#/components/schemas/Error",
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Email": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "format": "email",
+              "type": "string",
+            },
+            "name": "Email",
+          },
+          "ref": "#/components/schemas/Email",
+          "tokenName": "Email",
+          "type": "local",
         },
-        "#/components/schemas/Pet": SchemaRefEdge {
-          "name": "Pet",
-          "ref": "#/components/schemas/Pet",
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Name": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "type": "string",
+            },
+            "name": "Name",
+          },
+          "ref": "#/components/schemas/Name",
+          "tokenName": "Name",
+          "type": "local",
         },
-        "#/components/schemas/Pets": SchemaRefEdge {
-          "name": "Pets",
-          "ref": "#/components/schemas/Pets",
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "properties": Object {
+                "email": Object {
+                  "$ref": "#/components/schemas/Email",
+                },
+                "name": Object {
+                  "$ref": "#/components/schemas/Name",
+                },
+                "username": Object {
+                  "$ref": "#/components/schemas/Username",
+                },
+              },
+              "required": Array [
+                "username",
+                "name",
+                "email",
+              ],
+              "type": "object",
+            },
+            "name": "User",
+          },
+          "ref": "#/components/schemas/User",
+          "tokenName": "User",
+          "type": "local",
+        },
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "type": "string",
+            },
+            "name": "Username",
+          },
+          "ref": "#/components/schemas/Username",
+          "tokenName": "Username",
+          "type": "local",
         },
       },
     },
   },
   "nodes": Object {
     "schemas": Object {
-      "Error": SchemaNode {
+      "Email": SchemaNode {
+        "content": Object {
+          "format": "email",
+          "type": "string",
+        },
+        "name": "Email",
+      },
+      "Name": SchemaNode {
+        "content": Object {
+          "type": "string",
+        },
+        "name": "Name",
+      },
+      "Post": SchemaNode {
         "content": Object {
           "properties": Object {
-            "code": Object {
-              "format": "int32",
-              "type": "integer",
+            "author": Object {
+              "$ref": "#/components/schemas/User",
             },
-            "message": Object {
+            "content": Object {
+              "type": "string",
+            },
+            "date": Object {
               "type": "string",
             },
           },
           "required": Array [
-            "code",
-            "message",
+            "author",
+            "date",
+            "content",
           ],
           "type": "object",
         },
-        "name": "Error",
+        "name": "Post",
       },
-      "Pet": SchemaNode {
+      "User": SchemaNode {
         "content": Object {
           "properties": Object {
-            "id": Object {
-              "format": "int64",
-              "type": "integer",
+            "email": Object {
+              "$ref": "#/components/schemas/Email",
             },
             "name": Object {
-              "type": "string",
+              "$ref": "#/components/schemas/Name",
             },
-            "tag": Object {
-              "type": "string",
+            "username": Object {
+              "$ref": "#/components/schemas/Username",
             },
           },
           "required": Array [
-            "id",
+            "username",
             "name",
+            "email",
           ],
           "type": "object",
         },
-        "name": "Pet",
+        "name": "User",
       },
-      "Pets": SchemaNode {
+      "Username": SchemaNode {
         "content": Object {
-          "items": Object {
-            "$ref": "#/components/schemas/Pet",
-          },
-          "type": "array",
+          "type": "string",
         },
-        "name": "Pets",
-      },
-      "SchemaNotBeingUsed": SchemaNode {
-        "content": Object {
-          "properties": Object {
-            "key": Object {
-              "type": "string",
-            },
-            "value": Object {
-              "type": "string",
-            },
-          },
-          "type": "object",
-        },
-        "name": "SchemaNotBeingUsed",
+        "name": "Username",
       },
     },
   },
-  "path": StringContaining "tests/resources/petstore",
+  "path": StringContaining "tests/resources/social-network/social-network.yaml",
+}
+`;
+
+exports[`Creates a graph from the social-network specification 2`] = `
+Object {
+  "edges": Object {
+    "ref": Object {
+      "schemaRef": Object {
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "properties": Object {
+                "email": Object {
+                  "$ref": "#/components/schemas/Email",
+                },
+                "name": Object {
+                  "$ref": "#/components/schemas/Name",
+                },
+                "username": Object {
+                  "$ref": "#/components/schemas/Username",
+                },
+              },
+              "required": Array [
+                "username",
+                "name",
+                "email",
+              ],
+              "type": "object",
+            },
+            "name": "User",
+          },
+          "ref": "../social-network.yaml#/components/schemas/User",
+          "tokenName": "User",
+          "type": "remote",
+        },
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "type": "string",
+            },
+            "name": "Username",
+          },
+          "ref": "../social-network.yaml#/components/schemas/Username",
+          "tokenName": "Username",
+          "type": "remote",
+        },
+      },
+    },
+  },
+  "nodes": Object {
+    "schemas": Object {},
+  },
+  "path": StringContaining "tests/resources/social-network/users",
+}
+`;
+
+exports[`Creates a graph from the social-network specification 3`] = `
+Object {
+  "edges": Object {
+    "ref": Object {
+      "schemaRef": Object {
+        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Post": RefEdge {
+          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+          "child": SchemaNode {
+            "content": Object {
+              "properties": Object {
+                "author": Object {
+                  "$ref": "#/components/schemas/User",
+                },
+                "content": Object {
+                  "type": "string",
+                },
+                "date": Object {
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "author",
+                "date",
+                "content",
+              ],
+              "type": "object",
+            },
+            "name": "Post",
+          },
+          "ref": "../social-network.yaml#/components/schemas/Post",
+          "tokenName": "Post",
+          "type": "remote",
+        },
+      },
+    },
+  },
+  "nodes": Object {
+    "schemas": Object {},
+  },
+  "path": StringContaining "tests/resources/social-network/posts",
 }
 `;

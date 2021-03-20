@@ -1,9 +1,6 @@
-import { Node } from "../nodes/Node";
+import { Node } from '../nodes/Node';
 
 export class Edge {
-    parent!: Node;
-    child!: Node;
-
-    constructor() {
-    }
+  parent: Node | undefined;
+  child: Node | undefined;
 }

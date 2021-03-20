@@ -3,7 +3,6 @@ import { load as loadYaml } from 'js-yaml';
 import { OpenAPIV3 } from 'openapi-types';
 import { EdgesRefDict } from '../../../model';
 import { getRefEdges, getSchemaNodes } from '../../../src/graph/builder';
-import { SchemaRefEdge } from '../../../src/graph/edges/ref';
 import { SchemaNode } from '../../../src/graph/nodes/SchemaNode';
 
 function getPetstoreDocApi(path: string): OpenAPIV3.Document {
@@ -19,9 +18,9 @@ test('Should get all schemas correctly as SchemaNode array', () => {
     })
 });
 
-test('Should get all reference to schemas correctly as RefNode array', () => {
+test('Should get all reference to schemas correctly as EdgesRefDict array', () => {
     const petstorePath = "tests/resources/petstore/petstore.yaml"
-    const schemaRefNodes: EdgesRefDict = getRefEdges(getPetstoreDocApi(petstorePath));
+    const schemaRefNodes: EdgesRefDict = getRefEdges(getPetstoreDocApi(petstorePath), petstorePath);
     const expectedSchemas = ['Pets', 'Error', 'Pet'].sort()
     expect(Object.values(schemaRefNodes.schemaRef).map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
 });

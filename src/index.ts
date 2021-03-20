@@ -1,2 +1,1 @@
-export { getUnusedSchemas } from "./swagger-graph";
-
+export { getUnusedSchemas } from './swagger-graph';

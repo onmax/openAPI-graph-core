@@ -1,5 +1,5 @@
-import { SchemaRefEdge } from "../src/graph/edges/ref";
+import { RefEdge } from "../src/graph/edges";
 
 export interface EdgesRefDict {
-    schemaRef: { [key: string]: SchemaRefEdge }
+    schemaRef: { [key: string]: RefEdge }
 }
