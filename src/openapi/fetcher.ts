@@ -7,8 +7,8 @@
 
 import { existsSync, readdirSync } from 'fs';
 import { resolve } from 'path';
-import { OpenAPIContent } from '../model';
-import { getOpenApisContent } from './openapi';
+import { OpenAPIContent } from '../../model';
+import { getOpenApisContent } from '.';
 
 export async function fetcher(path: string): Promise<OpenAPIContent[]> {
   // Converts path to absolute

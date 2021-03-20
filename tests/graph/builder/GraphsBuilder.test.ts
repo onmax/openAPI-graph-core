@@ -1,5 +1,5 @@
 import { RefType } from '../../../model';
-import { fetcher } from '../../../src/fetcher';
+import { fetcher } from '../../../src/openapi/fetcher';
 import { OpenAPIGraph, OpenAPIGraphsBuilder } from '../../../src/graph';
 import { RefEdge } from '../../../src/graph/edges';
 import { SchemaNode } from '../../../src/graph/nodes/SchemaNode';

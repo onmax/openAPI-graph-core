@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Creates a graph from the petstore specification 1`] = `
-Object {
-  "content": Any<Object>,
-  "name": "SchemaNotBeingUsed",
-}
-`;
