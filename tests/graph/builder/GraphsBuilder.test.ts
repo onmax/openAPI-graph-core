@@ -56,7 +56,7 @@ test('Creates a graph from the social-network specification', async () => {
     expect(refSocialNetworkNames.map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
     expect(refSocialNetworkNames.map(n => n.tokenName).sort()).toStrictEqual(expectedSchemas)
 
-    // // Test users.yaml
+    // Test users.yaml
     const schemasUsersNames: string[] = Object.values(socialNetworkUsersGraph.getSchemaNodes()).map(n => n.name).sort();
     expect(schemasUsersNames).toStrictEqual([])
     Object.values(socialNetworkUsersGraph.getSchemaRefEdges()).map(edge => {
@@ -65,7 +65,7 @@ test('Creates a graph from the social-network specification', async () => {
     })
     expect(Object.values(socialNetworkUsersGraph.getSchemaRefEdges()).map(edge => edge.tokenName).sort()).toStrictEqual(['User', 'Username'].sort())
 
-    // // Test posts.yaml
+    // Test posts.yaml
     const schemasPostsNames: string[] = Object.values(socialNetworkPostsGraph.getSchemaNodes()).map(n => n.name).sort();
     expect(schemasPostsNames).toStrictEqual([])
     Object.values(socialNetworkPostsGraph.getSchemaRefEdges()).map(edge => {
