@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-import { fetcher, testables } from '../src/fetcher';
+import { fetcher, testables } from '../../src/openapi/fetcher';
 const { loadsSwaggerFiles, getFiles } = testables;
 
 const resourcesDir = `${resolve('.')}/tests/resources`;

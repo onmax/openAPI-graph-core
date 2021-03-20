@@ -1,4 +1,4 @@
-# Swagger-graph
+# OpenAPI-graph
 
 A TS library to manage large API projects defined by OpenAPIv3 specification.
 
@@ -8,33 +8,19 @@ A TS library to manage large API projects defined by OpenAPIv3 specification.
 
 Just run
 
-> npm install openapi-graph
+> npm install openapi-graph-core
 
 and you are good to go
 
-## Functions
+## Creating an OpenAPI graph
 
-For now, just one function is being exposed
-
-### `getUnusedSchemas(path: string)`
-
-It will create a OpenAPIGraph, and get the schemas that are not being used as a list.
-
-#### Arguments
-
-`path: string` - Abosolute, relative or url where the API has being defined
-
-#### Returns
-
-A list of `Schemas` that are not being used in the API. 
-
-#### Example
+The constructor needs to be a path of the root of the proyect where all your openAPI specifications are stored which will be fetched automatically.
 
 ```javascript
-const openApiGraph = require('openapi-graph');
+const OpenAPIGraphs = require('openapi-graph-core');
 
 (async () => {
-    const a = await openApiGraph.getUnusedSchemas('./')
-    console.log(a)
+    const graphs = await new OpenAPIGraphs('./').build()
+    console.log(graphs)
 })();
 ```

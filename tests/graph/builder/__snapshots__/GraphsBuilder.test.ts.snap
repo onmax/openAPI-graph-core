@@ -13,8 +13,8 @@ Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Email": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Email": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "format": "email",
@@ -26,8 +26,8 @@ Object {
           "tokenName": "Email",
           "type": "local",
         },
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Name": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Name": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "type": "string",
@@ -38,8 +38,8 @@ Object {
           "tokenName": "Name",
           "type": "local",
         },
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "properties": Object {
@@ -66,8 +66,8 @@ Object {
           "tokenName": "User",
           "type": "local",
         },
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "type": "string",
@@ -157,8 +157,8 @@ Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "properties": Object {
@@ -185,8 +185,8 @@ Object {
           "tokenName": "User",
           "type": "remote",
         },
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "type": "string",
@@ -212,8 +212,8 @@ Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml#/components/schemas/Post": RefEdge {
-          "absolutePath": "/home/max/openapi-graph/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Post": RefEdge {
+          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNode {
             "content": Object {
               "properties": Object {

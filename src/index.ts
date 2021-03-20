@@ -1,1 +1,1 @@
-export { getUnusedSchemas } from './swagger-graph';
+export { OpenAPIGraphs } from './graph';
