@@ -1,10 +1,9 @@
+import { OpenAPIGraphsBuilder } from '.';
+import { OpenAPIGraphsBuilderInterface, OpenAPIGraphsConstructor, OpenAPIGraphsInterface } from 'openapi-graph-types';
 import { fetcher } from '../openapi/fetcher';
-import { OpenAPIGraphsBuilder } from './builder/OpenAPIGraphsBuilder';
-import { RefEdge } from './edges';
-import { SchemaNode } from './nodes/SchemaNode';
 
-export class OpenAPIGraphs {
-  builder!: OpenAPIGraphsBuilder;
+export const OpenAPIGraphs: OpenAPIGraphsConstructor = class OpenAPIGraphsImpl implements OpenAPIGraphsInterface {
+  builder!: OpenAPIGraphsBuilderInterface;
   rootPath!: string;
 
   constructor(rootPath: string) {
@@ -14,19 +13,5 @@ export class OpenAPIGraphs {
   async build() {
     const apis = await fetcher(this.rootPath)
     this.builder = new OpenAPIGraphsBuilder(apis);
-  }
-
-  public checkForUnusedSchemas(): SchemaNode[] {
-    let unusedSchemas: SchemaNode[] = [];
-    this.builder.graphs.forEach((graph) => {
-      const refSchemaNames = Object.values(graph.getSchemaRefEdges())
-        .filter((ref) => ref instanceof RefEdge)
-        .map((ref) => ref.tokenName);
-      unusedSchemas = [
-        ...unusedSchemas,
-        ...Object.values(graph.getSchemaNodes()).filter((schema) => !refSchemaNames.includes(schema.name)),
-      ];
-    });
-    return unusedSchemas;
   }
 }

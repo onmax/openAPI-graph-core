@@ -2,7 +2,7 @@ import SwaggerParser from '@apidevtools/swagger-parser';
 import { readFileSync } from 'fs';
 import { load as loadYaml } from 'js-yaml';
 import { OpenAPIV3 } from 'openapi-types';
-import { OpenAPIContent } from '../../model';
+import { OpenAPIContent } from 'openapi-graph-types';
 
 /**
  * reads the contents of all given paths. The files will be validated.

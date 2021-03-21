@@ -1,8 +1,8 @@
-import { RefType } from '../../../model';
-import { fetcher } from '../../../src/openapi/fetcher';
-import { OpenAPIGraph, OpenAPIGraphsBuilder } from '../../../src/graph';
+import { OpenAPIGraphInterface, RefEdgeInterface, RefType } from 'openapi-graph-types';
+import { OpenAPIGraphsBuilder } from '../../../src/graph';
 import { RefEdge } from '../../../src/graph/edges';
 import { SchemaNode } from '../../../src/graph/nodes/SchemaNode';
+import { fetcher } from '../../../src/openapi/fetcher';
 
 test('Creates a graph from the petstore specification', async () => {
     const petstoreApis = await fetcher("tests/resources/petstore");
@@ -18,7 +18,7 @@ test('Creates a graph from the petstore specification', async () => {
     const expected = ["Pet", "Pets", "Error", "SchemaNotBeingUsed"].sort()
     expect(schemasNames).toEqual(expected)
 
-    const refSchemas: RefEdge[] = Object.values(graph.getSchemaRefEdges());
+    const refSchemas: RefEdgeInterface[] = Object.values(graph.getSchemaRefEdges());
     const expectedSchemas = ['Pets', 'Error', 'Pet'].sort()
     expect(refSchemas.map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
     expect(refSchemas.map(n => n.tokenName).sort()).toStrictEqual(expectedSchemas)
@@ -29,9 +29,9 @@ test('Creates a graph from the social-network specification', async () => {
     const socialNetworkBuilder = new OpenAPIGraphsBuilder(socialNetworkApis);
     expect(socialNetworkBuilder.graphs).toHaveLength(3);
 
-    const socialNetworkGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('social-network.yaml')) as OpenAPIGraph
-    const socialNetworkUsersGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('users.yaml')) as OpenAPIGraph
-    const socialNetworkPostsGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('posts.yaml')) as OpenAPIGraph
+    const socialNetworkGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('social-network.yaml')) as OpenAPIGraphInterface
+    const socialNetworkUsersGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('users.yaml')) as OpenAPIGraphInterface
+    const socialNetworkPostsGraph = socialNetworkBuilder.graphs.find(g => g.path.endsWith('posts.yaml')) as OpenAPIGraphInterface
 
     expect(socialNetworkGraph).toMatchSnapshot({
         path: expect.stringContaining('tests/resources/social-network/social-network.yaml'),
@@ -51,7 +51,7 @@ test('Creates a graph from the social-network specification', async () => {
     const expected = ["Username", "Name", "Email", "User", "Post"].sort()
     const schemasSocialNetworkNames: string[] = Object.values(socialNetworkGraph.getSchemaNodes()).map(n => n.name).sort();
     expect(schemasSocialNetworkNames).toEqual(expected)
-    const refSocialNetworkNames: RefEdge[] = Object.values(socialNetworkGraph.getSchemaRefEdges());
+    const refSocialNetworkNames: RefEdgeInterface[] = Object.values(socialNetworkGraph.getSchemaRefEdges());
     const expectedSchemas = ['Username', 'Name', 'Email', 'User'].sort()
     expect(refSocialNetworkNames.map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
     expect(refSocialNetworkNames.map(n => n.tokenName).sort()).toStrictEqual(expectedSchemas)

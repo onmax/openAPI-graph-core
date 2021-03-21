@@ -1,8 +1,8 @@
 import { resolve } from 'path';
-import { RefType } from '../../../model';
-import { Edge } from './Edge';
+import { RefEdgeConstructor, RefEdgeInterface, RefType } from 'openapi-graph-types';
+import { Edge } from '.';
 
-export class RefEdge extends Edge {
+export const RefEdge: RefEdgeConstructor = class RefEdgeImpl extends Edge implements RefEdgeInterface {
   ref!: string;
   absolutePath!: string;
   tokenName!: string;
@@ -50,7 +50,7 @@ export class RefEdge extends Edge {
   }
 
   // TODO Tests
-  getFullPath() {
+  getFullPath(): string {
     return `${this.absolutePath}#${this.ref.split('#')[1]}`;
   }
 }

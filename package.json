@@ -8,8 +8,8 @@
     "graph-structures",
     "ts-library"
   ],
-  "homepage": "https://github.com/onmax/openapi-graph",
-  "bugs": "https://github.com/onmax/openapi-graph/issues",
+  "homepage": "https://github.com/onmax/openapi-graph-core",
+  "bugs": "https://github.com/onmax/openapi-graph-core/issues",
   "scripts": {
     "test": "jest",
     "build": "tsc",
@@ -23,7 +23,7 @@
     "lib"
   ],
   "repository": {
-    "url": "git://github.com/onmax/open-api-graph.git"
+    "url": "git://github.com/onmax/openapi-graph-core.git"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
@@ -38,6 +38,7 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@apidevtools/swagger-parser": "^10.0.2"
+    "@apidevtools/swagger-parser": "^10.0.2",
+    "openapi-graph-types": "0.0.1-alpha.2.1.0"
   }
 }
