@@ -1,18 +1,18 @@
 import { getRefEdges, getSchemaNodes, resolveReference } from '.';
-import { EdgesRefDict, Nodes, OpenAPIContent } from '../../../model';
+import { EdgesRefDict, Nodes, OpenAPIContent, OpenAPIGraphInterface, OpenAPIGraphsBuilderConstructor, OpenAPIGraphsBuilderInterface } from 'openapi-graph-types';
 import { OpenAPIGraph } from '../OpenAPIGraph';
 
-export class OpenAPIGraphsBuilder {
-  graphs: OpenAPIGraph[];
+export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenAPIGraphsBuilderImpl implements OpenAPIGraphsBuilderInterface {
+  graphs: OpenAPIGraphInterface[];
 
   constructor(apis: OpenAPIContent[]) {
     this.graphs = this.initializeGraph(apis);
   }
 
-  private initializeGraph(apis: OpenAPIContent[]): OpenAPIGraph[] {
-    const graphs: OpenAPIGraph[] = [];
+  private initializeGraph(apis: OpenAPIContent[]): OpenAPIGraphInterface[] {
+    const graphs: OpenAPIGraphInterface[] = [];
     apis.forEach((api) => {
-      const graph: OpenAPIGraph = new OpenAPIGraph(api.path);
+      const graph: OpenAPIGraphInterface = new OpenAPIGraph(api.path);
       graph.setSchemaNodes(this.getSchemaNodes(api));
       graphs.push(graph);
     });
@@ -26,7 +26,7 @@ export class OpenAPIGraphsBuilder {
     return getSchemaNodes(api.content);
   }
 
-  private getRefEdges(graphs: OpenAPIGraph[], api: OpenAPIContent): EdgesRefDict {
+  private getRefEdges(graphs: OpenAPIGraphInterface[], api: OpenAPIContent): EdgesRefDict {
     const edges: EdgesRefDict = getRefEdges(api.content, api.path);
     return resolveReference(graphs, edges);
   }

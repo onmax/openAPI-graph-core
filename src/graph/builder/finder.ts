@@ -1,6 +1,5 @@
 import { OpenAPIV3 } from 'openapi-types';
-import { OpenAPIGraph } from '..';
-import { EdgesRefDict, Nodes } from '../../../model';
+import { EdgesRefDict, Nodes, OpenAPIGraphInterface } from 'openapi-graph-types';
 import { SchemaNode } from '../../graph/nodes/SchemaNode';
 import { RefEdge } from '../edges';
 
@@ -52,7 +51,7 @@ export function getRefEdges(json: any, absolutePath: string, edges: EdgesRefDict
   return edges;
 }
 
-export function resolveReference(graphs: OpenAPIGraph[], refs: EdgesRefDict): EdgesRefDict {
+export function resolveReference(graphs: OpenAPIGraphInterface[], refs: EdgesRefDict): EdgesRefDict {
   const filteredRefs: EdgesRefDict = {
     schemaRef: {},
   };

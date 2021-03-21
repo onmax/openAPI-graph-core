@@ -1,6 +1,6 @@
-import { Node } from '../nodes/Node';
+import { EdgeConstructor, EdgeInterface, NodeInterface } from 'openapi-graph-types';
 
-export class Edge {
-  parent: Node | undefined;
-  child: Node | undefined;
+export const Edge: EdgeConstructor = class EdgeImpl implements EdgeInterface {
+  parent: NodeInterface | undefined;
+  child: NodeInterface | undefined;
 }

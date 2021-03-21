@@ -1,6 +1,6 @@
-import { Edges, EdgesRefDict, Nodes } from '../../model';
+import { Edges, EdgesRefDict, Nodes, OpenAPIGraphConstructor, OpenAPIGraphInterface } from 'openapi-graph-types';
 
-export class OpenAPIGraph {
+export const OpenAPIGraph: OpenAPIGraphConstructor = class OpenAPIGraphImpl implements OpenAPIGraphInterface {
   path!: string;
   nodes!: Nodes;
   edges!: Edges;
