@@ -201,9 +201,19 @@ Object {
     },
   },
   "nodes": Object {
-    "schemas": Object {},
+    "schemas": Object {
+      "inline-schema-1": Object {
+        "content": Object {
+          "format": "array",
+          "items": Object {
+            "$ref": Any<String>,
+          },
+        },
+        "name": "inline-schema-1",
+      },
+    },
   },
-  "path": StringContaining "tests/resources/social-network/users",
+  "path": StringContaining "tests/resources/social-network/users/users.yaml",
 }
 `;
 
@@ -244,8 +254,18 @@ Object {
     },
   },
   "nodes": Object {
-    "schemas": Object {},
+    "schemas": Object {
+      "inline-schema-1": Object {
+        "content": Object {
+          "format": "array",
+          "items": Object {
+            "$ref": Any<String>,
+          },
+        },
+        "name": "inline-schema-1",
+      },
+    },
   },
-  "path": StringContaining "tests/resources/social-network/posts",
+  "path": StringContaining "tests/resources/social-network/posts/posts.yaml",
 }
 `;

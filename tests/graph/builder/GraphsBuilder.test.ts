@@ -15,7 +15,7 @@ test('Creates a graph from the petstore specification', async () => {
     });
     const graph = petstoreBuilder.graphs[0]
     const schemasNames: string[] = Object.values(graph.getSchemaNodes()).map(n => n.name).sort();
-    const expected = ["Pet", "Pets", "Error", "SchemaNotBeingUsed"].sort()
+    const expected = ["Pet", "Pets", "Error", "SchemaNotBeingUsed", "inline-schema-1"].sort()
     expect(schemasNames).toEqual(expected)
 
     const refSchemas: RefEdgeInterface[] = Object.values(graph.getSchemaRefEdges());
@@ -37,10 +37,32 @@ test('Creates a graph from the social-network specification', async () => {
         path: expect.stringContaining('tests/resources/social-network/social-network.yaml'),
     });
     expect(socialNetworkUsersGraph).toMatchSnapshot({
-        path: expect.stringContaining('tests/resources/social-network/users'),
+        path: expect.stringContaining('tests/resources/social-network/users/users.yaml'),
+        nodes: {
+            schemas: {
+                "inline-schema-1": {
+                    name: 'inline-schema-1',
+                    content: {
+                        format: 'array',
+                        items: { $ref: expect.any(String) }
+                    }
+                }
+            }
+        }
     });
     expect(socialNetworkPostsGraph).toMatchSnapshot({
-        path: expect.stringContaining('tests/resources/social-network/posts'),
+        path: expect.stringContaining('tests/resources/social-network/posts/posts.yaml'),
+        nodes: {
+            schemas: {
+                "inline-schema-1": {
+                    name: 'inline-schema-1',
+                    content: {
+                        format: 'array',
+                        items: { $ref: expect.any(String) }
+                    }
+                }
+            }
+        }
     });
 
     expect(Object.values(socialNetworkGraph.edges.ref.schemaRef)).toHaveLength(4);
@@ -58,7 +80,7 @@ test('Creates a graph from the social-network specification', async () => {
 
     // Test users.yaml
     const schemasUsersNames: string[] = Object.values(socialNetworkUsersGraph.getSchemaNodes()).map(n => n.name).sort();
-    expect(schemasUsersNames).toStrictEqual([])
+    expect(schemasUsersNames).toStrictEqual(['inline-schema-1'])
     Object.values(socialNetworkUsersGraph.getSchemaRefEdges()).map(edge => {
         expect(edge.type).toStrictEqual(RefType.Remote)
         expect(edge.child).toBeInstanceOf(SchemaNode)
@@ -67,7 +89,7 @@ test('Creates a graph from the social-network specification', async () => {
 
     // Test posts.yaml
     const schemasPostsNames: string[] = Object.values(socialNetworkPostsGraph.getSchemaNodes()).map(n => n.name).sort();
-    expect(schemasPostsNames).toStrictEqual([])
+    expect(schemasPostsNames).toStrictEqual(['inline-schema-1'])
     Object.values(socialNetworkPostsGraph.getSchemaRefEdges()).map(edge => {
         expect(edge).toBeInstanceOf(RefEdge)
         expect(edge.type).toStrictEqual(RefType.Remote)
