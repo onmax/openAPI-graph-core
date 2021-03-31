@@ -32,4 +32,4 @@ export const OpenAPIGraph: OpenAPIGraphConstructor = class OpenAPIGraphImpl impl
   getSchemaRefEdges(): EdgesRefDict['schemaRef'] {
     return this.edges.ref.schemaRef;
   }
-}
+};

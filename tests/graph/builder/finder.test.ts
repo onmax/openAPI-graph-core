@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { load as loadYaml } from 'js-yaml';
 import { OpenAPIV3 } from 'openapi-types';
-import { EdgesRefDict, SchemaNodeInterface } from 'openapi-graph-types';
+import { EdgesRefDict, RefType, SchemaNodeInterface } from 'openapi-graph-types';
 import { getRefEdges, getSchemaNodes } from '../../../src/graph/builder';
 
 function getPetstoreDocApi(path: string): OpenAPIV3.Document {
@@ -20,7 +20,12 @@ test('Should get all schemas correctly as SchemaNode array', () => {
 
 test('Should get all reference to schemas correctly as EdgesRefDict array', () => {
     const petstorePath = "tests/resources/petstore/petstore.yaml"
-    const schemaRefNodes: EdgesRefDict = getRefEdges(getPetstoreDocApi(petstorePath), petstorePath);
+    const schemaRefNodes = Object.values(getRefEdges(getPetstoreDocApi(petstorePath), petstorePath).schemaRef);
     const expectedSchemas = ['Pets', 'Error', 'Pet'].sort()
-    expect(Object.values(schemaRefNodes.schemaRef).map(n => n.ref).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
+    expect(schemaRefNodes.map(n => n.specificationPath).sort()).toStrictEqual(expectedSchemas.map(s => `/components/schemas/${s}`))
+    expect(schemaRefNodes.map(n => n.rawPath).sort()).toStrictEqual(expectedSchemas.map(s => `#/components/schemas/${s}`))
+    expect(schemaRefNodes.map(n => n.tokenName).sort()).toStrictEqual(expectedSchemas)
+    schemaRefNodes.map(n => expect(n.filePath).toContain("tests/resources/petstore/petstore.yaml"))
+    schemaRefNodes.map(n => expect(n.path).toContain("tests/resources/petstore/petstore.yaml#/components/schemas/"))
+    schemaRefNodes.map(n => expect(n.type).toStrictEqual(RefType.Local))
 });

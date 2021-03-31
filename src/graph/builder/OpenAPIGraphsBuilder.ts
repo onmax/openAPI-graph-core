@@ -1,23 +1,31 @@
 import { getRefEdges, getSchemaNodes, resolveReference } from '.';
-import { EdgesRefDict, Nodes, OpenAPIContent, OpenAPIGraphInterface, OpenAPIGraphsBuilderConstructor, OpenAPIGraphsBuilderInterface } from 'openapi-graph-types';
+import {
+  EdgesRefDict,
+  Nodes,
+  OpenAPIContent,
+  OpenAPIGraphInterface,
+  OpenAPIGraphsBuilderConstructor,
+  OpenAPIGraphsBuilderInterface,
+} from 'openapi-graph-types';
 import { OpenAPIGraph } from '../OpenAPIGraph';
 
-export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenAPIGraphsBuilderImpl implements OpenAPIGraphsBuilderInterface {
-  graphs: OpenAPIGraphInterface[];
+export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenAPIGraphsBuilderImpl
+  implements OpenAPIGraphsBuilderInterface {
+  graphs: OpenAPIGraphsBuilderInterface['graphs'];
 
   constructor(apis: OpenAPIContent[]) {
     this.graphs = this.initializeGraph(apis);
   }
 
-  private initializeGraph(apis: OpenAPIContent[]): OpenAPIGraphInterface[] {
-    const graphs: OpenAPIGraphInterface[] = [];
+  private initializeGraph(apis: OpenAPIContent[]): OpenAPIGraphsBuilderInterface['graphs'] {
+    const graphs: OpenAPIGraphsBuilderInterface['graphs'] = {};
     apis.forEach((api) => {
       const graph: OpenAPIGraphInterface = new OpenAPIGraph(api.path);
       graph.setSchemaNodes(this.getSchemaNodes(api));
-      graphs.push(graph);
+      graphs[api.path] = graph;
     });
-    graphs.map((graph, i) => {
-      graph.setRefEdges(this.getRefEdges(graphs, apis[i]));
+    Object.keys(graphs).map((graphKey, i) => {
+      graphs[graphKey].setRefEdges(this.getRefEdges(graphs, apis[i]));
     });
     return graphs;
   }
@@ -26,8 +34,8 @@ export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenA
     return getSchemaNodes(api.content);
   }
 
-  private getRefEdges(graphs: OpenAPIGraphInterface[], api: OpenAPIContent): EdgesRefDict {
+  private getRefEdges(graphs: OpenAPIGraphsBuilderInterface['graphs'], api: OpenAPIContent): EdgesRefDict {
     const edges: EdgesRefDict = getRefEdges(api.content, api.path);
     return resolveReference(graphs, edges);
   }
-}
+};
