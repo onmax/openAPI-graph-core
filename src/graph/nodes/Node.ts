@@ -1,4 +1,4 @@
-import { NodeConstructor, NodeInterface } from "openapi-graph-types";
+import { NodeConstructor, NodeInterface } from 'openapi-graph-types';
 
 export const Node: NodeConstructor = class NodeImpl implements NodeInterface {
   name: string;
@@ -6,4 +6,4 @@ export const Node: NodeConstructor = class NodeImpl implements NodeInterface {
   constructor(name: string) {
     this.name = name;
   }
-}
+};

@@ -11,7 +11,7 @@ export const OpenAPIGraphs: OpenAPIGraphsConstructor = class OpenAPIGraphsImpl i
   }
 
   async build() {
-    const apis = await fetcher(this.rootPath)
+    const apis = await fetcher(this.rootPath);
     this.builder = new OpenAPIGraphsBuilder(apis);
   }
-}
+};

@@ -14,32 +14,41 @@ Object {
     "ref": Object {
       "schemaRef": Object {
         "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Email": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNodeImpl {
             "content": Object {
               "format": "email",
               "type": "string",
             },
+            "isInline": false,
             "name": "Email",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Email": [Circular],
+            },
           },
-          "ref": "#/components/schemas/Email",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "rawPath": "#/components/schemas/Email",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/Email",
           "tokenName": "Email",
-          "type": "local",
         },
         "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Name": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNodeImpl {
             "content": Object {
               "type": "string",
             },
+            "isInline": false,
             "name": "Name",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Name": [Circular],
+            },
           },
-          "ref": "#/components/schemas/Name",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "rawPath": "#/components/schemas/Name",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/Name",
           "tokenName": "Name",
-          "type": "local",
         },
         "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNodeImpl {
             "content": Object {
               "properties": Object {
@@ -60,23 +69,50 @@ Object {
               ],
               "type": "object",
             },
+            "isInline": false,
             "name": "User",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": [Circular],
+              "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/User": RefEdgeImpl {
+                "child": [Circular],
+                "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+                "rawPath": "../social-network.yaml#/components/schemas/User",
+                "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "specificationPath": "/components/schemas/User",
+                "tokenName": "User",
+              },
+            },
           },
-          "ref": "#/components/schemas/User",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "rawPath": "#/components/schemas/User",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/User",
           "tokenName": "User",
-          "type": "local",
         },
         "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
           "child": SchemaNodeImpl {
             "content": Object {
               "type": "string",
             },
+            "isInline": false,
             "name": "Username",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": [Circular],
+              "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/Username": RefEdgeImpl {
+                "child": [Circular],
+                "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+                "rawPath": "../social-network.yaml#/components/schemas/Username",
+                "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "specificationPath": "/components/schemas/Username",
+                "tokenName": "Username",
+              },
+            },
           },
-          "ref": "#/components/schemas/Username",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "rawPath": "#/components/schemas/Username",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/Username",
           "tokenName": "Username",
-          "type": "local",
         },
       },
     },
@@ -88,13 +124,35 @@ Object {
           "format": "email",
           "type": "string",
         },
+        "isInline": false,
         "name": "Email",
+        "referencedBy": Object {
+          "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Email": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "rawPath": "#/components/schemas/Email",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/Email",
+            "tokenName": "Email",
+          },
+        },
       },
       "Name": SchemaNodeImpl {
         "content": Object {
           "type": "string",
         },
+        "isInline": false,
         "name": "Name",
+        "referencedBy": Object {
+          "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Name": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "rawPath": "#/components/schemas/Name",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/Name",
+            "tokenName": "Name",
+          },
+        },
       },
       "Post": SchemaNodeImpl {
         "content": Object {
@@ -116,7 +174,18 @@ Object {
           ],
           "type": "object",
         },
+        "isInline": false,
         "name": "Post",
+        "referencedBy": Object {
+          "/home/max/openapi-graph-core/tests/resources/social-network/posts/posts.yaml#/components/schemas/Post": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/posts/posts.yaml",
+            "rawPath": "../social-network.yaml#/components/schemas/Post",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/Post",
+            "tokenName": "Post",
+          },
+        },
       },
       "User": SchemaNodeImpl {
         "content": Object {
@@ -138,13 +207,51 @@ Object {
           ],
           "type": "object",
         },
+        "isInline": false,
         "name": "User",
+        "referencedBy": Object {
+          "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "rawPath": "#/components/schemas/User",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/User",
+            "tokenName": "User",
+          },
+          "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/User": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+            "rawPath": "../social-network.yaml#/components/schemas/User",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/User",
+            "tokenName": "User",
+          },
+        },
       },
       "Username": SchemaNodeImpl {
         "content": Object {
           "type": "string",
         },
+        "isInline": false,
         "name": "Username",
+        "referencedBy": Object {
+          "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "rawPath": "#/components/schemas/Username",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/Username",
+            "tokenName": "Username",
+          },
+          "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/Username": RefEdgeImpl {
+            "child": [Circular],
+            "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+            "rawPath": "../social-network.yaml#/components/schemas/Username",
+            "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+            "specificationPath": "/components/schemas/Username",
+            "tokenName": "Username",
+          },
+        },
       },
     },
   },
@@ -157,8 +264,7 @@ Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/User": RefEdgeImpl {
           "child": SchemaNodeImpl {
             "content": Object {
               "properties": Object {
@@ -179,31 +285,70 @@ Object {
               ],
               "type": "object",
             },
+            "isInline": false,
             "name": "User",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/User": RefEdgeImpl {
+                "child": [Circular],
+                "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "rawPath": "#/components/schemas/User",
+                "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "specificationPath": "/components/schemas/User",
+                "tokenName": "User",
+              },
+              "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/User": [Circular],
+            },
           },
-          "ref": "../social-network.yaml#/components/schemas/User",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+          "rawPath": "../social-network.yaml#/components/schemas/User",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/User",
           "tokenName": "User",
-          "type": "remote",
         },
-        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/Username": RefEdgeImpl {
           "child": SchemaNodeImpl {
             "content": Object {
               "type": "string",
             },
+            "isInline": false,
             "name": "Username",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Username": RefEdgeImpl {
+                "child": [Circular],
+                "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "rawPath": "#/components/schemas/Username",
+                "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+                "specificationPath": "/components/schemas/Username",
+                "tokenName": "Username",
+              },
+              "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml#/components/schemas/Username": [Circular],
+            },
           },
-          "ref": "../social-network.yaml#/components/schemas/Username",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/users/users.yaml",
+          "rawPath": "../social-network.yaml#/components/schemas/Username",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/Username",
           "tokenName": "Username",
-          "type": "remote",
         },
       },
     },
   },
   "nodes": Object {
-    "schemas": Object {},
+    "schemas": Object {
+      "inline-schema-1": Object {
+        "content": Object {
+          "format": "array",
+          "items": Object {
+            "$ref": Any<String>,
+          },
+        },
+        "isInline": true,
+        "name": "inline-schema-1",
+        "referencedBy": Object {},
+      },
+    },
   },
-  "path": StringContaining "tests/resources/social-network/users",
+  "path": StringContaining "tests/resources/social-network/users/users.yaml",
 }
 `;
 
@@ -212,8 +357,7 @@ Object {
   "edges": Object {
     "ref": Object {
       "schemaRef": Object {
-        "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml#/components/schemas/Post": RefEdgeImpl {
-          "absolutePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+        "/home/max/openapi-graph-core/tests/resources/social-network/posts/posts.yaml#/components/schemas/Post": RefEdgeImpl {
           "child": SchemaNodeImpl {
             "content": Object {
               "properties": Object {
@@ -234,18 +378,36 @@ Object {
               ],
               "type": "object",
             },
+            "isInline": false,
             "name": "Post",
+            "referencedBy": Object {
+              "/home/max/openapi-graph-core/tests/resources/social-network/posts/posts.yaml#/components/schemas/Post": [Circular],
+            },
           },
-          "ref": "../social-network.yaml#/components/schemas/Post",
+          "filePath": "/home/max/openapi-graph-core/tests/resources/social-network/posts/posts.yaml",
+          "rawPath": "../social-network.yaml#/components/schemas/Post",
+          "refToFilePath": "/home/max/openapi-graph-core/tests/resources/social-network/social-network.yaml",
+          "specificationPath": "/components/schemas/Post",
           "tokenName": "Post",
-          "type": "remote",
         },
       },
     },
   },
   "nodes": Object {
-    "schemas": Object {},
+    "schemas": Object {
+      "inline-schema-1": Object {
+        "content": Object {
+          "format": "array",
+          "items": Object {
+            "$ref": Any<String>,
+          },
+        },
+        "isInline": true,
+        "name": "inline-schema-1",
+        "referencedBy": Object {},
+      },
+    },
   },
-  "path": StringContaining "tests/resources/social-network/posts",
+  "path": StringContaining "tests/resources/social-network/posts/posts.yaml",
 }
 `;
