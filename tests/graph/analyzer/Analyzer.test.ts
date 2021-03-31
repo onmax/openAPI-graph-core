@@ -1,7 +1,6 @@
 import { OpenAPIGraphsInterface } from 'openapi-graph-types';
 import { Analyzer } from '../../../src';
 import { OpenAPIGraphs } from '../../../src/graph';
-import { fetcher } from '../../../src/openapi/fetcher';
 
 
 test('Creates a graph from the petstore specification and analyze it', async () => {
