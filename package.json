@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@types/js-yaml": "^4.0.0",
+    "@types/yamljs": "^0.2.31",
     "jest": "^26.6.3",
     "js-yaml": "^4.0.0",
     "openapi-types": "^7.2.3",
@@ -39,6 +40,9 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.0.2",
-    "openapi-graph-types": "0.0.1-alpha.3.1"
+    "openapi-graph-types": "0.0.1-alpha.3.1",
+    "pino": "^6.11.2",
+    "pino-pretty": "^4.7.1",
+    "yaml": "^1.10.2"
   }
 }

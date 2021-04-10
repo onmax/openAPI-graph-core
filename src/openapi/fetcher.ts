@@ -9,17 +9,41 @@ import { existsSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 import { OpenAPIContent } from 'openapi-graph-types';
 import { getOpenApisContent } from '.';
-
-export async function fetcher(path: string): Promise<OpenAPIContent[]> {
-  // Converts path to absolute
-  path = resolve(path);
-  const pathExists = existsSync(path);
-
-  if (!pathExists) {
-    throw new Error('The given path does not exist in your system');
-  } else {
-    return await loadsSwaggerFiles(path);
+const logger = require('pino')({
+  prettyPrint: {
+    ignore: 'time,pid,hostname',
+    singleLine: true
   }
+})
+
+const COMMON_FOLDER_NAMES = ["node_modules", "target"]
+const COMMON_FILES_NAMES = ["docker-compose"].flatMap(e => [`${e}.yml`, `${e}.yaml`])
+
+export async function fetcher(paths: string[]): Promise<OpenAPIContent[]>;
+export async function fetcher(path: string): Promise<OpenAPIContent[]>;
+export async function fetcher(input: any): Promise<OpenAPIContent[]> {
+  if (typeof input === 'string') {
+    // If we are working with a path, then it means that we have to find all openAPI specifications
+
+    // Converts path to absolute
+    const resolvedPath = resolve(input);
+    const pathExists = existsSync(resolvedPath);
+    if (!pathExists) {
+      throw new Error('The given path does not exist in your system');
+    } else {
+      return await loadsSwaggerFiles(resolvedPath);
+    }
+  } else if (([]).constructor === input.constructor) {
+    // If we are working with a path, then it means that we have to find all openAPI specifications
+    const resolvedPaths = (input as string[])
+      .map(i => resolve(input))
+      .filter(resolvedPath => existsSync(resolvedPath) || logger.console.warn(`Ignoring ${resolvedPath} because the path is not reachable`));
+    return getOpenApisContent(resolvedPaths);
+  } else {
+    logger.console.warn(`Invalid given input. It was expected a string or array of strings. Received ${input}.`);
+    return [];
+  }
+
 }
 
 /**
@@ -32,6 +56,7 @@ export async function fetcher(path: string): Promise<OpenAPIContent[]> {
  */
 async function loadsSwaggerFiles(projectPath: string): Promise<OpenAPIContent[]> {
   const projectContent = await getFiles(resolve(projectPath));
+  logger.info(`Found (${projectContent.length}) ${projectContent}`);
   if (projectContent === undefined || projectContent.length === 0) {
     return [];
   }
@@ -42,10 +67,21 @@ async function loadsSwaggerFiles(projectPath: string): Promise<OpenAPIContent[]>
 async function getFiles(fromPath = './', paths: string[] = []): Promise<string[]> {
   const entries = await readdirSync(fromPath, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.isDirectory()) {
-      paths.push(...(await getFiles(`${fromPath}/${entry.name}/`)));
-    } else if (entry.name.match(/.*\.(yml|yaml|json)/gi)) {
-      paths.push(resolve(`${fromPath}/${entry.name}`));
+    // We don't check hidden files or folders
+    if (!/(^|\/)\.[^/.]/g.test(entry.name)) {
+      if (
+        entry.isDirectory() &&
+        // Don't check common folder names
+        !COMMON_FOLDER_NAMES.includes(entry.name)) {
+        paths.push(...(await getFiles(`${fromPath}/${entry.name}/`)));
+      } else if (
+        entry.isFile() &&
+        // JSON are also valid, but they are more generic, so we don't look for them because it takes a lot of time
+        entry.name.match(/.*\.(yml|yaml)/gi) &&
+        // Don't check common file names
+        !COMMON_FILES_NAMES.includes(entry.name)) {
+        paths.push(resolve(`${fromPath}/${entry.name}`));
+      }
     }
   }
   return paths;
