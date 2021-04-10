@@ -84,7 +84,7 @@ export function getRefEdges(json: any, absolutePath: string, edges: EdgesRefDict
     if (/components\/schemas/.test(ref)) {
       edges.schemaRef[ref] = new RefEdge(absolutePath, ref);
     }
-  } else {
+  } else if (json !== null) {
     function handleJson() {
       Object.keys(json).forEach((key) => {
         getRefEdges(json[key], absolutePath, edges);
@@ -111,7 +111,7 @@ export function resolveReference(graphs: OpenAPIGraphsBuilderInterface['graphs']
   };
 
   Object.values(refs.schemaRef)
-    .filter((r) => graphs?.[r.refToFilePath].nodes.schemas[r.tokenName])
+    .filter((r) => graphs?.[r.refToFilePath] && graphs?.[r.refToFilePath].nodes.schemas[r.tokenName])
     .forEach((r) => {
       const schema = graphs?.[r.refToFilePath].nodes.schemas[r.tokenName];
       if (schema) {
