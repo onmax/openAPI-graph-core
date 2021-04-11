@@ -1,7 +1,8 @@
 import { readFileSync } from 'fs';
 import { load as loadYaml } from 'js-yaml';
 import { OpenAPIV3 } from 'openapi-types';
-import { getOpenApisContent } from '../../src/openapi';
+import { testables } from '../../src/utils';
+const { getOpenApisContent } = testables;
 
 function getPetstoreDocApi(path: string): OpenAPIV3.Document {
     return loadYaml(readFileSync(path, 'utf8')) as OpenAPIV3.Document
