@@ -1,6 +1,6 @@
 {
   "name": "openapi-graph-core",
-  "version": "0.0.1-alpha.3.0",
+  "version": "1.0.0",
   "description": "A TS library to manage large API projects defined by OpenAPIv3 specification.",
   "main": "./lib/index.js",
   "keywords": [
@@ -15,7 +15,8 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "debug": "node --debug-brk --inspect ./node_modules/jest/bin/jest -i"
+    "debug": "node --debug-brk --inspect ./node_modules/jest/bin/jest -i",
+    "release": "release-it"
   },
   "author": "onmax",
   "license": "MIT",
@@ -32,6 +33,7 @@
     "js-yaml": "^4.0.0",
     "openapi-types": "^7.2.3",
     "prettier": "^2.2.1",
+    "release-it": "^14.6.1",
     "ts-jest": "^26.5.3",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
@@ -39,7 +41,7 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.0.2",
-    "openapi-graph-types": "0.0.1-alpha.3.1",
+    "openapi-graph-types": "../openapi-graph-types",
     "pino": "^6.11.2",
     "pino-pretty": "^4.7.1",
     "yaml": "^1.10.2"

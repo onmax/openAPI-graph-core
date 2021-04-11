@@ -1,6 +1,7 @@
 import { getRefEdges, getSchemaNodes, resolveReference } from '.';
 import {
   EdgesRefDict,
+  LogLevel,
   Nodes,
   OpenAPIContent,
   OpenAPIGraphInterface,
@@ -8,6 +9,7 @@ import {
   OpenAPIGraphsBuilderInterface,
 } from 'openapi-graph-types';
 import { OpenAPIGraph } from '../OpenAPIGraph';
+import { log } from '../../utils';
 
 export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenAPIGraphsBuilderImpl
   implements OpenAPIGraphsBuilderInterface {
@@ -36,6 +38,7 @@ export const OpenAPIGraphsBuilder: OpenAPIGraphsBuilderConstructor = class OpenA
 
   private getRefEdges(graphs: OpenAPIGraphsBuilderInterface['graphs'], api: OpenAPIContent): EdgesRefDict {
     const edges: EdgesRefDict = getRefEdges(api.content, api.path);
+    log(`Found ${Object.values(edges.schemaRef).length} schema references in ${api.content.info.title}`, LogLevel.DEBUG)
     return resolveReference(graphs, edges);
   }
 };

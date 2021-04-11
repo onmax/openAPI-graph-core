@@ -5,16 +5,11 @@
  *
  */
 
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
+import { load as loadYaml } from 'js-yaml';
+import { LogLevel, OpenAPIContent } from 'openapi-graph-types';
 import { resolve } from 'path';
-import { OpenAPIContent } from 'openapi-graph-types';
-import { getOpenApisContent } from '.';
-const logger = require('pino')({
-  prettyPrint: {
-    ignore: 'time,pid,hostname',
-    singleLine: true
-  }
-})
+import { log } from '.';
 
 const COMMON_FOLDER_NAMES = ["node_modules", "target"]
 const COMMON_FILES_NAMES = ["docker-compose"].flatMap(e => [`${e}.yml`, `${e}.yaml`])
@@ -37,10 +32,10 @@ export async function fetcher(input: any): Promise<OpenAPIContent[]> {
     // If we are working with a path, then it means that we have to find all openAPI specifications
     const resolvedPaths = (input as string[])
       .map(i => resolve(input))
-      .filter(resolvedPath => existsSync(resolvedPath) || logger.console.warn(`Ignoring ${resolvedPath} because the path is not reachable`));
+      .filter(resolvedPath => existsSync(resolvedPath) || log(`Ignoring ${resolvedPath} because the path is not reachable`, LogLevel.WARN));
     return getOpenApisContent(resolvedPaths);
   } else {
-    logger.console.warn(`Invalid given input. It was expected a string or array of strings. Received ${input}.`);
+    log(`Invalid given input. It was expected a string or array of strings. Received ${input}`, LogLevel.WARN);
     return [];
   }
 
@@ -56,7 +51,7 @@ export async function fetcher(input: any): Promise<OpenAPIContent[]> {
  */
 async function loadsSwaggerFiles(projectPath: string): Promise<OpenAPIContent[]> {
   const projectContent = await getFiles(resolve(projectPath));
-  logger.info(`Found (${projectContent.length}) ${projectContent}`);
+  log(`Found (${projectContent.length}) ${projectContent}`);
   if (projectContent === undefined || projectContent.length === 0) {
     return [];
   }
@@ -87,8 +82,23 @@ async function getFiles(fromPath = './', paths: string[] = []): Promise<string[]
   return paths;
 }
 
+/**
+ * reads the contents of all given paths. The files will be validated.
+ *
+ * @param paths of the .yaml|.yml files. The paths should exists.
+ * @returns the contents of the files as JSON with their path
+ */
+async function getOpenApisContent(paths: string[]): Promise<OpenAPIContent[]> {
+  return (
+    paths
+      .map(p => ({ path: p, content: loadYaml(readFileSync(p, 'utf8')) || log(`Couldn't load ${p}`, LogLevel.WARN) }))
+      .filter(p => p.content?.openapi?.includes("3.0"))
+  );
+}
+
 // Just for testing reasons https://stackoverflow.com/a/54116079
 export const testables = {
   loadsSwaggerFiles,
   getFiles,
+  getOpenApisContent
 };

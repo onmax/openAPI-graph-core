@@ -1,6 +1,7 @@
-import { EdgesRefDict, Nodes, OpenAPIGraphsBuilderInterface, SchemaNodeInterface } from 'openapi-graph-types';
+import { EdgesRefDict, LogLevel, Nodes, OpenAPIGraphsBuilderInterface, SchemaNodeInterface } from 'openapi-graph-types';
 import { OpenAPIV3 } from 'openapi-types';
 import { SchemaNode } from '../../graph/nodes/SchemaNode';
+import { log } from '../../utils';
 import { RefEdge } from '../edges';
 
 /**
@@ -68,7 +69,10 @@ export function getInlineSchemasNodes(
 }
 
 export function getSchemaNodes(api: OpenAPIV3.Document): Nodes['schemas'] {
-  return { ...getDefinedSchemasNodes(api), ...getInlineSchemasNodes(api) };
+  const schemas = getDefinedSchemasNodes(api)
+  const inlineSchemas = getInlineSchemasNodes(api)
+  log(`Found ${Object.values(schemas).length} schemas and ${Object.values(inlineSchemas).length} inline schemas in ${api.info.title}`, LogLevel.DEBUG)
+  return { ...schemas, ...inlineSchemas };
 }
 
 /**

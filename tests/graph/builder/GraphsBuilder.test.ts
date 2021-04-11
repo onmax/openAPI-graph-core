@@ -2,7 +2,7 @@ import { OpenAPIGraphInterface, RefEdgeInterface, RefType } from 'openapi-graph-
 import { OpenAPIGraphsBuilder } from '../../../src/graph';
 import { RefEdge } from '../../../src/graph/edges';
 import { SchemaNode } from '../../../src/graph/nodes/SchemaNode';
-import { fetcher } from '../../../src/openapi/fetcher';
+import { fetcher } from '../../../src/utils';
 
 test('Creates a graph from the petstore specification', async () => {
     const petstoreApis = await fetcher("tests/resources/petstore");
