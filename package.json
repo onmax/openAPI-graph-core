@@ -1,6 +1,6 @@
 {
   "name": "openapi-graph-core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A TS library to manage large API projects defined by OpenAPIv3 specification.",
   "main": "./lib/index.js",
   "keywords": [
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.0.2",
-    "openapi-graph-types": "../openapi-graph-types",
+    "openapi-graph-types": "1.0.0",
     "pino": "^6.11.2",
     "pino-pretty": "^4.7.1",
     "yaml": "^1.10.2"
